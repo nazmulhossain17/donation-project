@@ -1,9 +1,10 @@
+'use client'
 import Link from 'next/link'
 import React, { useState } from 'react'
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useRouter } from "next/navigation";
-import axios from 'axios';
+import { createUser } from '@/lib/actions/create-user';
 
 interface FormData {
     name: string;
@@ -16,34 +17,15 @@ const Registerpage: React.FC = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const router = useRouter();
 
-    const handleRegister: SubmitHandler<FormData> = async (data) => {
-        console.log(data);
-        setLoading(true);
-        try {
-          const response = await axios.post(
-            "https://nazmul-book-store-api.vercel.app/api/v1/auth/create-user",
-            data,
-            {
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
-    
-          if (response.data.ok) {
-            console.log("Registration successful");
-            toast.success("Account created successful");
-            setLoading(false);
-            router.push("/login");
-          } else {
-            // Registration failed, handle the error
-            console.error("Registration failed");
-          }
-        } catch (error) {
-          console.error("Error:", error);
-        } finally {
-          setLoading(false); // Set loading to false when the request is complete
-        }
+    const handleRegister = async (data: FormData) => {
+       console.log(data)
+       const res = await createUser(data)
+       console.log(res);
+       if(res.ok){
+        console.log("Register successfully");
+        toast.success("Account created successful")
+       }
+       router.push("/login")
       };
   return (
     <>
@@ -52,26 +34,32 @@ const Registerpage: React.FC = () => {
         <div className="flex justify-center w-full h-full my-auto xl:gap-14 lg:justify-normal md:gap-5 draggable">
           <div className="flex items-center justify-center w-full lg:p-12">
             <div className="flex items-center xl:p-10">
-              <form onSubmit={handleSubmit(handleRegister)} className="flex flex-col w-full h-full pb-6 text-center bg-white rounded-3xl">
+              <form onSubmit={handleSubmit(handleRegister)}className="flex flex-col w-full h-full pb-6 text-center bg-white rounded-3xl">
                 <h3 className="mb-3 text-4xl font-extrabold text-dark-grey-900">Sign Up</h3>
                 <p className="mb-4 text-grey-700">Create your account</p>
-             
-              
-                <label htmlFor="name" className="mb-2 text-sm text-start text-slate-900">Name*</label>
-                <input {...register("name")} required id="name" type="name" placeholder="Enter your name" className="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-gray-700 bg-slate-100 text-black rounded-2xl"/>
+              <label htmlFor="name" className="mb-2 text-sm text-start text-slate-900">Name*</label>
+                <input {...register("name")} required  type="name" placeholder="Enter your name" className="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-gray-700 bg-slate-100 text-black rounded-2xl"/>
               
                 <label htmlFor="email" className="mb-2 text-sm text-start text-slate-900">Email*</label>
-                <input {...register("email")} required id="email" type="email" placeholder="Enter a email" className="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-gray-700 bg-slate-100 text-black rounded-2xl"/>
+                <input {...register("email")} required  type="email" placeholder="Enter a email" className="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-gray-700 bg-slate-100 text-black rounded-2xl"/>
                 <label htmlFor="password" className="mb-2 text-sm text-start text-grey-900">Password*</label>
-                <input {...register("password")} required id="password" type="password" placeholder="Enter a password" className="flex items-center w-full px-5 py-4 mb-5 mr-2 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-gray-700 bg-slate-100 text-black rounded-2xl"/>
+                <input {...register("password")} required  type="password" placeholder="Enter a password" className="flex items-center w-full px-5 py-4 mb-5 mr-2 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-gray-700 bg-slate-100 text-black rounded-2xl"/>
              
-                <button className="w-full px-6 py-5 mb-5 text-sm font-bold leading-none text-white transition duration-300 md:w-96 rounded-2xl hover:bg-blue-600 focus:ring-4 focus:ring-purple-100 bg-purple-500">Sign Up</button>
-                <p className="text-sm leading-relaxed text-gray-900">Already have an account? <Link href="/login" className="font-bold text-grey-700">Sign in</Link></p>
+        
+                <button className="w-full px-6 py-5 mb-5 text-sm font-bold leading-none text-white transition duration-300 md:w-96 rounded-2xl hover:bg-blue-600 focus:ring-4 focus:ring-purple-100 bg-purple-500">
+                {loading ? "Creating Account..." : "Sign up"}
+                </button>
+               
               </form>
+           
             </div>
+            {/* <p className="text-sm text-gray-900">Already have an account? <Link href="/login" className="font-bold text-grey-700">Sign in</Link></p> */}
+
           </div>
+
         </div>
       </div>
+
 
     </div>
   </>
