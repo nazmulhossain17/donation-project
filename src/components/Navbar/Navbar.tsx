@@ -31,7 +31,7 @@ function Navbar() {
     return (
       <>
         <header className={`w-full fixed top-0 left-0 right-0 ${isSticky ? "bg-white" : ""}`}>
-          <nav className="py-4 md:px-8 px-4 bg-gradient-to-r from-violet-200 to-purple-100">
+          <nav className="py-4 md:px-8 px-4 bg-gradient-to-r from-[#f7ffef] to-slate-100">
             <div className="flex items-center justify-between">
               <div className="font-bold text-2xl cursor-pointer text-black">
                 <Link href="/">Donation </Link>
