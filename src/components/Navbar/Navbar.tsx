@@ -1,5 +1,6 @@
 'use client'
 
+import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { HiMenu } from "react-icons/hi";
@@ -27,6 +28,8 @@ function Navbar({session}: {session:any}) {
         window.removeEventListener("scroll", handleScroll);
       };
     }, []);
+
+  
   
     return (
       <>
@@ -51,9 +54,12 @@ function Navbar({session}: {session:any}) {
                   Statics
                 </Link>
                 {session? (
+                  <>
                   <Link href="/statics" className="block hover:text-green-700 py-2 px-4 font-semibold">
                   Dashboard
                 </Link>
+                <button onClick={()=> signOut()} className="block hover:text-red-700 py-2 px-4 font-semibold">Logout</button>
+                  </>
                 ):(
                   <Link href="/login" className="block hover:text-green-700 py-2 px-4 font-semibold">
                   Login
