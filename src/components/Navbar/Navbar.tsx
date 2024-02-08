@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { HiMenu } from "react-icons/hi";
 
-function Navbar() {
+function Navbar({session}: {session:any}) {
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
     const [isSticky, setIsSticky] = useState<boolean>(false);
   
@@ -50,6 +50,15 @@ function Navbar() {
                 <Link href="/statics" className="block hover:text-green-700 py-2 px-4 font-semibold">
                   Statics
                 </Link>
+                {session? (
+                  <Link href="/statics" className="block hover:text-green-700 py-2 px-4 font-semibold">
+                  Dashboard
+                </Link>
+                ):(
+                  <Link href="/login" className="block hover:text-green-700 py-2 px-4 font-semibold">
+                  Login
+                </Link>
+                )}
               </div>
   
               <button onClick={toggleMenu} className="lg:hidden text-red-400 text-3xl">
