@@ -1,9 +1,15 @@
+
+'use client'
 import Image from "next/image";
 import Link from "next/link";
 import donate from "../assest/donate.jpeg"
 import { Toaster } from "react-hot-toast";
+import { useEffect, useState } from "react";
+import Post from "@/components/Post/Post";
 
 export default function Home() {
+  
+  
   return (
     <>
     <Toaster />
@@ -26,7 +32,7 @@ export default function Home() {
             href="/donation"
             className="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-3.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white "
           >
-            See Doations
+            See Doations 
           </Link>
         </div>
       </div>
@@ -39,6 +45,12 @@ export default function Home() {
         />
       </div>
     </section>
+    <section className="m-12 p-12">
+      <div>
+       <Post/>
+      </div>
+    </section>
+    
     </>
   );
 }

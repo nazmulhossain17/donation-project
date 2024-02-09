@@ -41,7 +41,8 @@ const Loginpage = () => {
                 <button className="w-full px-6 py-5 mb-5 text-sm font-bold leading-none text-white transition duration-300 md:w-96 rounded-2xl hover:bg-blue-600 focus:ring-4 focus:ring-purple-100 bg-purple-500">Sign In</button>
                
               </form>
-              {/* <p className="text-sm leading-relaxed text-gray-900">Not registered yet? <Link href="/register" className="font-bold text-grey-700">Create an Account</Link></p> */}
+              <br/>
+              <p className="text-sm  text-gray-900">Not registered yet? <Link href="/register" className="font-bold text-grey-700">Create an Account</Link></p>
             </div>
           </div>
         </div>

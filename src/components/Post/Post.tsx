@@ -1,12 +1,9 @@
 'use client'
-
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
 
-
-
-const Donation = () => {
-  const [posts, setPosts] = useState([]);
+const Post = () => {
+    const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,8 +23,7 @@ const Donation = () => {
     fetchData();
   }, []);
   return (
-    <div className="mt-20">
-      <h1>Donation page</h1>
+    <>
       <div className="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-10">
        {
         posts.map(post => (
@@ -78,8 +74,8 @@ const Donation = () => {
         ))
        }
       </div>
-    </div>
+    </>
   )
 }
 
-export default Donation
+export default Post

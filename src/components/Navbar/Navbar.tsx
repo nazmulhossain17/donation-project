@@ -2,13 +2,14 @@
 
 import { signOut } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { HiMenu } from "react-icons/hi";
 
 function Navbar({session}: {session:any}) {
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
     const [isSticky, setIsSticky] = useState<boolean>(false);
-  
+    const router = useRouter()
     const toggleMenu = () => {
       setIsMenuOpen(!isMenuOpen);
     };
@@ -29,7 +30,10 @@ function Navbar({session}: {session:any}) {
       };
     }, []);
 
-  
+  const handleLogout = () =>{
+    signOut()
+    router.push("/")
+  }
   
     return (
       <>
@@ -55,10 +59,10 @@ function Navbar({session}: {session:any}) {
                 </Link>
                 {session? (
                   <>
-                  <Link href="/statics" className="block hover:text-green-700 py-2 px-4 font-semibold">
+                  <Link href="/dashboard" className="block hover:text-green-700 py-2 px-4 font-semibold">
                   Dashboard
                 </Link>
-                <button onClick={()=> signOut()} className="block hover:text-red-700 py-2 px-4 font-semibold">Logout</button>
+                <button onClick={handleLogout} className=" hover:text-red-700 py-2 px-4 font-semibold">Logout</button>
                   </>
                 ):(
                   <Link href="/login" className="block hover:text-green-700 py-2 px-4 font-semibold">
@@ -86,9 +90,19 @@ function Navbar({session}: {session:any}) {
                 <Link href="/statics" className="block hover:text-gray-400 py-2 px-4">
                   Statics
                 </Link>
-                <Link href="/login" className="block hover:text-gray-400 py-2 px-4">
-                  Sign in
+                {session? (
+                  <>
+                  <Link href="/dashboard" className="block hover:text-green-700 py-2 px-4 font-semibold">
+                  Dashboard
                 </Link>
+                <button onClick={()=> signOut()} className="block hover:text-red-700 py-2 px-4 font-semibold">Logout</button>
+                  </>
+                ):(
+                  <Link href="/login" className="block hover:text-green-700 py-2 px-4 font-semibold">
+                  Login
+                </Link>
+                )}
+               
               </div>
             )}
           </nav>

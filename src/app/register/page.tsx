@@ -23,10 +23,11 @@ const Registerpage: React.FC = () => {
        console.log(res);
        if(res.ok){
         console.log("Register successfully");
-        toast.success("Account created successful")
+        toast.success("Account created successful");
        }
        router.push("/login")
       };
+      
   return (
     <>
     <div className='bg-white rounded-lg py-5'>
