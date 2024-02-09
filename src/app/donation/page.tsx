@@ -1,6 +1,7 @@
 'use client'
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 
@@ -47,7 +48,7 @@ const Donation = () => {
                 <a href="#!">
                     <div
                         className="absolute bottom-0 left-0 bg-green-600 px-4 py-2 text-white text-sm hover:bg-white hover:text-indigo-600 transition duration-500 ease-in-out">
-                        Donate Now
+                        <Link href={`/donation/${post.id}`}>Donate Now</Link> 
                     </div>
                 </a>
 
