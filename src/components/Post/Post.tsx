@@ -3,8 +3,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react"
 
+interface Post{
+  id: string;
+  title: string;
+  image: string;
+}
+
 const Post = () => {
-    const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {

@@ -4,5 +4,5 @@ export const allData = async() =>{
                 cache: "no-cache"
             });
             const apidata = await res.json()
-            console.log(apidata)
+            return apidata.posts.userId
 }
