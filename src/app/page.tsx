@@ -49,6 +49,15 @@ export default function Home() {
       <div>
        <Post/>
       </div>
+      <div className="text-center p-2">
+          <Link
+            href="/donation"
+            className="bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-bold py-2 px-4 rounded mt-4 inline-block "
+          >
+            See All
+          </Link>
+        </div>
+
     </section>
     
     </>
