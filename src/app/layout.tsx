@@ -23,7 +23,9 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Navbar session={session? true: false}/>  
+        <div className="min-h-screen">
         {children}
+        </div>
         </body>
     </html>
   );

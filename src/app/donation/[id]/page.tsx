@@ -55,7 +55,7 @@ const DynamicData = ({params}) => {
     className="font-semibold text-lg inline-block">{posts.description}</a>
 
 </div>
-            </div>
+</div>
       
 </div>
   )

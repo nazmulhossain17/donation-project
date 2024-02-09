@@ -1,4 +1,3 @@
-
 'use client'
 import Image from "next/image";
 import Link from "next/link";
@@ -8,8 +7,6 @@ import { useEffect, useState } from "react";
 import Post from "@/components/Post/Post";
 
 export default function Home() {
-  
-  
   return (
     <>
     <Toaster />
