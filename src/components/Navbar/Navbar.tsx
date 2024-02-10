@@ -114,18 +114,37 @@ function Navbar({ session, role }: NavbarProps) {
                 <Link href="/statics" className="block hover:text-gray-400 py-2 px-4">
                   Statics
                 </Link>
-                {session? (
-                  <>
-                  <Link href="/dashboard" className="block hover:text-green-700 py-2 px-4 font-semibold">
+                {session ? (
+          <>
+            {role === 'admin' ? (
+              <>
+                <Link href="/dashboard" className="block hover:text-green-700 py-2 px-4 font-semibold">
                   Dashboard
                 </Link>
-                <button onClick={()=> signOut()} className="block hover:text-red-700 py-2 px-4 font-semibold">Logout</button>
-                  </>
-                ):(
-                  <Link href="/login" className="block hover:text-green-700 py-2 px-4 font-semibold">
-                  Login
-                </Link>
-                )}
+                <button onClick={handleLogout} className="hover:text-red-700 py-2 px-4 font-semibold">
+                  Logout
+                </button>
+              </>
+            ) : role === 'user' ? (
+             <>
+              <Link href="/profile" className="block hover:text-green-700 py-2 px-4 font-semibold">
+                Profile
+              </Link>
+              <button onClick={handleLogout} className="hover:text-red-700 py-2 px-4 font-semibold">
+              Logout
+            </button>
+             </>
+            ) : (
+              <Link href="/login" className="block hover:text-green-700 py-2 px-4 font-semibold">
+                Login
+              </Link>
+            )}
+          </>
+        ) : (
+          <Link href="/login" className="block hover:text-green-700 py-2 px-4 font-semibold">
+            Login
+          </Link>
+        )}
                
               </div>
             )}
