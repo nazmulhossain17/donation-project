@@ -58,7 +58,6 @@ const handleRegister = async (data: FormData) => {
       <div className=''>
         <div className="">
           <div className="">
-            {/* <!-- Contact Form --> */}
             <div className="rounded-sm border border-stroke bg-gray-100 shadow-default dark:border-strokedark dark:bg-boxdark">
               <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
                 <h3 className="font-medium text-black dark:text-white">

@@ -12,8 +12,8 @@ export async function middleware(req: NextRequest) {
     console.log('Pathname:', pathname);
 
     // Check if the user is authenticated
-    if (token) {
-      const userRole: string | undefined = token?.user?.role;
+    if (token as object) {
+      const userRole = (token?.user as { role?: string })?.role;
 
 
       // Check the user's role and redirect accordingly
