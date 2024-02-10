@@ -6,14 +6,19 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { HiMenu } from "react-icons/hi";
 
-function Navbar({session}: {session:any}) {
+interface NavbarProps {
+  session: boolean;
+  role?: string; // Add the role prop
+}
+function Navbar({ session, role }: NavbarProps) {
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
     const [isSticky, setIsSticky] = useState<boolean>(false);
     const router = useRouter()
     const toggleMenu = () => {
       setIsMenuOpen(!isMenuOpen);
     };
-  
+    console.log(role)
+    console.log(session)
     useEffect(() => {
       const handleScroll = () => {
         if (window.scrollY > 0) {
@@ -57,18 +62,37 @@ function Navbar({session}: {session:any}) {
                 <Link href="/statics" className="block hover:text-green-700 py-2 px-4 font-semibold">
                   Statics
                 </Link>
-                {session? (
-                  <>
-                  <Link href="/dashboard" className="block hover:text-green-700 py-2 px-4 font-semibold">
+                {session ? (
+          <>
+            {role === 'admin' ? (
+              <>
+                <Link href="/dashboard" className="block hover:text-green-700 py-2 px-4 font-semibold">
                   Dashboard
                 </Link>
-                <button onClick={handleLogout} className=" hover:text-red-700 py-2 px-4 font-semibold">Logout</button>
-                  </>
-                ):(
-                  <Link href="/login" className="block hover:text-green-700 py-2 px-4 font-semibold">
-                  Login
-                </Link>
-                )}
+                <button onClick={handleLogout} className="hover:text-red-700 py-2 px-4 font-semibold">
+                  Logout
+                </button>
+              </>
+            ) : role === 'user' ? (
+             <>
+              <Link href="/profile" className="block hover:text-green-700 py-2 px-4 font-semibold">
+                Profile
+              </Link>
+              <button onClick={handleLogout} className="hover:text-red-700 py-2 px-4 font-semibold">
+              Logout
+            </button>
+             </>
+            ) : (
+              <Link href="/login" className="block hover:text-green-700 py-2 px-4 font-semibold">
+                Login
+              </Link>
+            )}
+          </>
+        ) : (
+          <Link href="/login" className="block hover:text-green-700 py-2 px-4 font-semibold">
+            Login
+          </Link>
+        )}
               </div>
   
               <button onClick={toggleMenu} className="lg:hidden text-red-400 text-3xl">

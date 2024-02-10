@@ -17,13 +17,13 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await getServerSession(authOptions)
+  const session = await getServerSession(authOptions) as { user?: { role?: string } };
   console.log(session);
-  // console.log(session?.user.id);
+  const role = session?.user?.role
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navbar session={session? true: false}/>  
+        <Navbar session={session? true: false} role={role}/>  
         <div className="min-h-screen">
         {children}
         </div>
