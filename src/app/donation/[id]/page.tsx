@@ -15,7 +15,7 @@ const DynamicData = ({ params }: { params: { id: string } })=> {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/post/all-post/${params.id}`,{
+        const res = await fetch(`https://donation-server-three.vercel.app/api/post/all-post/${params.id}`,{
           cache: "no-cache"
         });
         const data = await res.json();

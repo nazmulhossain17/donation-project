@@ -1,7 +1,7 @@
 
 export const createUser = async (data: any) => {
     try {
-      const res = await fetch("http://localhost:5000/api/auth/create-account", {
+      const res = await fetch("https://donation-server-three.vercel.app/api/auth/create-account", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

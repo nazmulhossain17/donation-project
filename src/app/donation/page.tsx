@@ -16,7 +16,7 @@ const Donation = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/post/all-post",{
+        const res = await fetch("https://donation-server-three.vercel.app/api/post/all-post",{
           cache: "no-cache"
         });
         const data = await res.json();

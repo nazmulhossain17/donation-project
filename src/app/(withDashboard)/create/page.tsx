@@ -27,7 +27,7 @@ const handleRegister = async (data: FormData) => {
         setLoading(true);
   
         // Make a POST request to your backend API
-        const response = await fetch('http://localhost:5000/api/post/create-post', {
+        const response = await fetch('https://donation-server-three.vercel.app/api/post/create-post', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

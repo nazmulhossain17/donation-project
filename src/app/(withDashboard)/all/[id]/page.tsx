@@ -19,7 +19,7 @@ const Updatepage = ({ params }: { params: { id: string } }) => {
     try {
         setLoading(true);
   
-        const response = await fetch(`http://localhost:5000/api/post/posts/${params.id}`, {
+        const response = await fetch(`https://donation-server-three.vercel.app/api/post/posts/${params.id}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',

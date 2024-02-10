@@ -17,7 +17,7 @@ const AllPage = () => {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const res = await fetch("http://localhost:5000/api/post/all-post",{
+          const res = await fetch("https://donation-server-three.vercel.app/api/post/all-post",{
             cache: "no-cache"
           });
           const data = await res.json();
@@ -45,7 +45,7 @@ const AllPage = () => {
       const handleDelete = async () => {
         if (selectedPost) {
           try {
-            const response = await fetch(`http://localhost:5000/api/post/delete-post/${selectedPost.id}`, {
+            const response = await fetch(`https://donation-server-three.vercel.app/api/post/delete-post/${selectedPost.id}`, {
               method: "DELETE",
               headers: {
                 "Content-Type": "application/json",
