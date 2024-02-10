@@ -1,4 +1,5 @@
 'use client';
+import Modal from '@/components/Modal/Modal';
 import React, { useEffect, useState } from 'react'
 
 interface Post {
@@ -8,6 +9,8 @@ interface Post {
   }
 const AllPage = () => {
     const [postz, setPosts] = useState<Post[]>([]);
+    const [selectedPost, setSelectedPost] = useState<Post | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
       const fetchData = async () => {
@@ -26,9 +29,44 @@ const AllPage = () => {
   
       fetchData();
     }, []);
+
+    const openModal = (post: Post) => {
+        setSelectedPost(post);
+        setIsModalOpen(true);
+      };
+    
+      const closeModal = () => {
+        setIsModalOpen(false);
+        setSelectedPost(null);
+      };
+    
+      const handleDelete = async () => {
+        if (selectedPost) {
+          try {
+            const response = await fetch(`http://localhost:5000/api/post/delete-post/${selectedPost.id}`, {
+              method: "DELETE",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            });
+    
+            if (response.ok) {
+              console.log("Post deleted successfully");
+              // Optionally, update the state or fetch posts again after deletion
+              setPosts((prevPosts) => prevPosts.filter((post) => post.id !== selectedPost.id));
+            } else {
+              console.error("Error deleting post");
+            }
+          } catch (error) {
+            console.error("Error deleting post:", error);
+          }
+    
+          closeModal();
+        }
+      };
   return (
     <div>
-        all post {postz.length}
+        all post {postz?.length}
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
       
@@ -71,14 +109,20 @@ const AllPage = () => {
                     <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                 </td>
                 <td className="px-6 py-4">
-                    <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</a>
+                    <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                      <button onClick={() => openModal(post)}>
+                    Delete
+                  </button></a>
+                   
                 </td>
             </tr>
         </tbody>
             ))
         }
         </table>
+        <Modal isOpen={isModalOpen} onClose={closeModal} onConfirm={handleDelete} />
       </div>
+      
     </div>
   )
 }
