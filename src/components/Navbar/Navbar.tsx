@@ -56,8 +56,8 @@ function Navbar({ session, role }: NavbarProps) {
                 <Link href="/donation" className="block hover:text-green-700 py-2 px-4 font-semibold">
                   Donation
                 </Link>
-                <Link href="/about" className="block hover:text-green-700 py-2 px-4 font-semibold">
-                  About
+                <Link href="/contact" className="block hover:text-green-700 py-2 px-4 font-semibold">
+                  Contact
                 </Link>
                 <Link href="/statics" className="block hover:text-green-700 py-2 px-4 font-semibold">
                   Statics
@@ -108,8 +108,8 @@ function Navbar({ session, role }: NavbarProps) {
                 <Link href="/donation" className="block hover:text-gray-400 py-2 px-4">
                   Donation
                 </Link>
-                <Link href="/about" className="block hover:text-gray-400 py-2 px-4">
-                  About
+                <Link href="/contact" className="block hover:text-gray-400 py-2 px-4">
+                  Contact
                 </Link>
                 <Link href="/statics" className="block hover:text-gray-400 py-2 px-4">
                   Statics

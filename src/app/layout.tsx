@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/utils/authOptions";
+import Footer from "@/components/Footer/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,6 +28,7 @@ export default async function RootLayout({
         <div className="min-h-screen">
         {children}
         </div>
+        <Footer/>
         </body>
     </html>
   );
