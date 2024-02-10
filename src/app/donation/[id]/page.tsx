@@ -3,26 +3,39 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-const DynamicData = ({params}) => {
-    const [posts, setPosts] = useState([]);
+interface Post {
+  id: string;
+    title: string;
+    image: string;
+    description: string;
+}
+const DynamicData = ({ params }: { params: { id: string } })=> {
+  const [post, setPost] = useState<Post | null>(null);
 
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const res = await fetch(`http://localhost:5000/api/post/all-post/${params.id}`,{
-            cache: "no-cache"
-          });
-          const data = await res.json();
-          console.log(data.post);
-          console.log(data);
-          setPosts(data.post);
-        } catch (error) {
-          console.error("Error fetching data:", error);
-        }
-      };
-  
-      fetchData();
-    }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch(`http://localhost:5000/api/post/all-post/${params.id}`,{
+          cache: "no-cache"
+        });
+        const data = await res.json();
+        
+        // Assuming data.post is a single post
+        console.log(data.post);
+        setPost(data.post);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, [params.id]);
+
+  if (!post) {
+    // Render loading state or return null
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className=" p-12 m-4">
         Hello
@@ -32,7 +45,7 @@ const DynamicData = ({params}) => {
             <div className="relative">
                 <a href="#">
                     <Image className="w-full"
-                        src={posts.image}
+                        src={post.image}
                         width={400}
                         height={300}
                         alt="Sunset in the mountains"/>
@@ -50,9 +63,9 @@ const DynamicData = ({params}) => {
               </div>
               <div className="px-6 py-4">
 
-<h1 className="font-semibold text-3xl m-4 inline-block hover:text-indigo-600 transition duration-500 ease-in-out">{posts.title}</h1>
+<h1 className="font-semibold text-3xl m-4 inline-block hover:text-indigo-600 transition duration-500 ease-in-out">{post.title}</h1>
 <a href="#"
-    className="font-semibold text-lg inline-block">{posts.description}</a>
+    className="font-semibold text-lg inline-block">{post.description}</a>
 
 </div>
 </div>

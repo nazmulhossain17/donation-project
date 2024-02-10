@@ -1,6 +1,8 @@
 'use client';
 import Modal from '@/components/Modal/Modal';
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
+import toast from 'react-hot-toast';
 
 interface Post {
     id: string;
@@ -52,6 +54,7 @@ const AllPage = () => {
     
             if (response.ok) {
               console.log("Post deleted successfully");
+          
               // Optionally, update the state or fetch posts again after deletion
               setPosts((prevPosts) => prevPosts.filter((post) => post.id !== selectedPost.id));
             } else {
@@ -106,7 +109,9 @@ const AllPage = () => {
                     $2999
                 </td>
                 <td className="px-6 py-4">
-                    <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                    <Link href={`/all/${post.id}`} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                      Edit
+                    </Link>
                 </td>
                 <td className="px-6 py-4">
                     <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">

@@ -1,65 +1,47 @@
-'use client'
-
-import { allData } from '@/lib/actions/all-data';
-import {  handleUser } from '@/lib/actions/user';
-import { authOptions } from '@/utils/authOptions';
-import { getServerSession } from 'next-auth';
-import React, { useEffect, useState } from 'react'
+'use client';
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
 
 interface FormData {
     price: number;
     title: string;
     image: string;
     description: string;
-  }
+}
 
-const CreateShoes = () => {
-const { register, handleSubmit } = useForm<FormData>();
-const [loading, setLoading] = useState<boolean>(false);
+const Updatepage = ({ params }: { params: { id: string } }) => {
+    console.log(params.id)
+    const { register, handleSubmit } = useForm<FormData>();
+    const [loading, setLoading] = useState<boolean>(false);
 
 
-const handleRegister = async (data: FormData) => {
-    console.log(data)
-
+    const handleRegister = async (data: FormData) => {
     try {
         setLoading(true);
   
-        // Make a POST request to your backend API
-        const response = await fetch('http://localhost:5000/api/post/create-post', {
-          method: 'POST',
+        const response = await fetch(`http://localhost:5000/api/post/posts/${params.id}`, {
+          method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(data),
         });
   
-        const responseData = await response.json();
-  
-        // Handle the response accordingly
         if (response.ok) {
-          console.log(responseData.message);
-          toast.success("post created successfully")
+          console.log('Post updated successfully');
           window.location.reload()
-          // Optionally, you can perform additional actions upon success
         } else {
-          console.error(responseData.error);
-          // Handle error scenarios
+          console.error('Error updating post');
         }
       } catch (error) {
-        console.error('Error creating post:', error);
+        console.error('Error updating post:', error);
       } finally {
         setLoading(false);
       }
-};
-    return (
-      <>
-      <div className=''>
-        <div className="">
-          <div className="">
-            {/* <!-- Contact Form --> */}
-            <div className="rounded-sm border border-stroke bg-gray-100 shadow-default dark:border-strokedark dark:bg-boxdark">
+}
+  return (
+    <div>
+      <div className="rounded-sm border border-stroke bg-gray-100 shadow-default dark:border-strokedark dark:bg-boxdark">
               <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
                 <h3 className="font-medium text-black dark:text-white">
                   Create Post
@@ -123,18 +105,14 @@ const handleRegister = async (data: FormData) => {
                   </div>
   
                   <button className="flex w-full justify-center rounded bg-purple-600 p-3 font-medium text-gray">
-                    {loading ? "Creating Product..." : "Create Product"}
+                    {loading ? "Updating Post..." : "Update Post"}
+                    
                   </button>
                 </div>
               </form>
             </div>
-          </div>
-  
-        
-        </div>
-        </div>
-      </>
-    );
-  };
-  
-  export default CreateShoes;
+    </div>
+  )
+}
+
+export default Updatepage
