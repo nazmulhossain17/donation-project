@@ -4,7 +4,6 @@ import type { NextRequest } from 'next/server';
 
 export async function middleware(req: NextRequest) {
   try {
-    // Use getToken for proper handling of the token
     const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
 
     console.log('Token:', token);
@@ -14,7 +13,8 @@ export async function middleware(req: NextRequest) {
 
     // Check if the user is authenticated
     if (token) {
-      const userRole = token?.user?.role;
+      const userRole: string | undefined = token?.user?.role;
+
 
       // Check the user's role and redirect accordingly
       if (userRole === 'admin') {

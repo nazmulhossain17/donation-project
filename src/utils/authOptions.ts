@@ -34,7 +34,8 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user }: { token: any; user: any }) {
       // Persist the OAuth access_token and or the user id to the token right after signin
-      console.log(token, user)
+      console.log(token)
+      console.log(user)
       return {
         ...token,
         ...user
