@@ -12,6 +12,7 @@ interface Post {
 
 const Donation = () => {
   const [posts, setPosts] = useState<Post[]>([]);
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,12 +31,25 @@ const Donation = () => {
 
     fetchData();
   }, []);
+
+  const filteredPosts = posts.filter(post =>
+    post.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
   return (
     <div className="mt-20">
-      <h1>Donation page</h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-10">
+
+      <div className="m-3 p-3 flex justify-center">
+      <input
+        type="text"
+        placeholder="Search..."
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      />
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-10 p-3 m-3">
        {
-        posts.map(post => (
+        filteredPosts.map(post => (
             <div key={post.id} className="rounded overflow-hidden shadow-lg">
 
             <div className="relative">

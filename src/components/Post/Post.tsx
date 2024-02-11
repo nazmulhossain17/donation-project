@@ -29,11 +29,13 @@ const Post = () => {
 
     fetchData();
   }, []);
+
+  const limitedPosts = posts.slice(0, 6);
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-10">
        {
-        posts.map(post => (
+         limitedPosts.map((post) => (
             <div key={post.id} className="rounded overflow-hidden shadow-lg">
 
             <div className="relative">
