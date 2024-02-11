@@ -2,14 +2,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import donate from "../assest/donate.jpeg"
-import { Toaster } from "react-hot-toast";
-import { useEffect, useState } from "react";
 import Post from "@/components/Post/Post";
 
 export default function Home() {
   return (
     <>
-    <Toaster />
+    
     <p>Hello world</p>
     <section className="flex flex-col container mx-auto bg-[#f7ffef] rounded-[59px] pt-16 px-10 md:items-center md:px-20 md:pt-[68px] md:flex-row md:justify-between gap-10 z-30 mt-20">
       <div className="flex flex-col items-start text-black">
@@ -60,3 +58,4 @@ export default function Home() {
     </>
   );
 }
+

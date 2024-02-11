@@ -1,8 +1,7 @@
-
-import { NextRequest } from 'next/server';
+'use client'
 import React from 'react'
 
-const DashboardHomePage = async(req: NextRequest) => {
+const DashboardHomePage = () => {
  
   return (
     <div className='mt-12 p-12'>

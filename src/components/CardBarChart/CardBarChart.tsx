@@ -81,8 +81,7 @@ const ProgressReportCard: React.FC = () => {
     <div className="max-w-sm w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
       <div className="py-6" id="radial-chart"></div>
     </div>
-  </div>
-  
+  </div>  
 
   );
 };

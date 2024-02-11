@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar/Navbar";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/utils/authOptions";
 import Footer from "@/components/Footer/Footer";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,6 +25,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+      <Toaster />
         <Navbar session={session? true: false} role={role}/>  
         <div className="min-h-screen">
         {children}

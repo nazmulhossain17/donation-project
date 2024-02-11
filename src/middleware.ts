@@ -15,8 +15,6 @@ export async function middleware(req: NextRequest) {
     if (token as object) {
       const userRole = (token?.user as { role?: string })?.role;
 
-
-      // Check the user's role and redirect accordingly
       if (userRole === 'admin') {
         // Allow access to /dashboard, /create, /all
         if (pathname.startsWith('/dashboard') || pathname.startsWith('/create') || pathname.startsWith('/all')) {
@@ -34,7 +32,6 @@ export async function middleware(req: NextRequest) {
       }
     }
 
-    // Redirect unauthenticated users to the home page
     console.log('Redirecting unauthenticated user to home page');
     return NextResponse.redirect(`${process.env.NEXTAUTH_URL}`);
   } catch (error) {
@@ -43,8 +40,6 @@ export async function middleware(req: NextRequest) {
   }
 }
 
-// See "Matching Paths" below to learn more
 export const config = {
-  // Adjust the paths based on your routing structure
   matcher: ['/dashboard/:path*', '/create/:path*', '/all/:path*', '/profile/:path*'],
 };
