@@ -122,7 +122,7 @@ const handleRegister = async (data: FormData) => {
                   </div>
   
                   <button className="flex w-full justify-center rounded bg-purple-600 p-3 font-medium text-gray">
-                    {loading ? "Creating Product..." : "Create Product"}
+                    {loading ? "Creating Post..." : "Create Post"}
                   </button>
                 </div>
               </form>

@@ -38,7 +38,7 @@ const DynamicData = ({ params }: { params: { id: string } })=> {
 
   return (
     <div className=" p-12 m-4">
-        Hello
+     
       {/* <p>Hello {posts.title}</p> */}
       <div  className="rounded overflow-hidden shadow-lg">
 
