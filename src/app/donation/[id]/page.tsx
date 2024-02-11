@@ -1,6 +1,7 @@
 'use client';
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 interface Post {
@@ -11,6 +12,7 @@ interface Post {
 }
 const DynamicData = ({ params }: { params: { id: string } })=> {
   const [post, setPost] = useState<Post | null>(null);
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -53,12 +55,12 @@ const DynamicData = ({ params }: { params: { id: string } })=> {
                         className="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25">
                     </div>
                 </a>
-                <a href="#!">
+                <Link href="/donatefor">
                     <div
                         className="absolute bottom-0 left-0 bg-green-600 px-4 py-2 text-white text-sm hover:bg-white hover:text-indigo-600 transition duration-500 ease-in-out">
-                        {/* <Link href={`/donation/${post.id}`}>Donate Now</Link>  */}Donate
+                      Donate
                     </div>
-                </a>
+                </Link>
 
               </div>
               <div className="px-6 py-4">

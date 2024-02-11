@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 interface Post {
     id: string;
     title: string;
+    price: string;
     createdAt: string; 
   }
 const AllPage = () => {
@@ -106,7 +107,7 @@ const AllPage = () => {
                 </td>
              
                 <td className="px-6 py-4">
-                    $2999
+                    ${post.price}
                 </td>
                 <td className="px-6 py-4">
                     <Link href={`/all/${post.id}`} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">

@@ -34,7 +34,7 @@ const Registerpage: React.FC = () => {
         <div className="flex justify-center w-full h-full my-auto xl:gap-14 lg:justify-normal md:gap-5 draggable">
           <div className="flex items-center justify-center w-full lg:p-12">
             <div className="flex items-center xl:p-10">
-              <form onSubmit={handleSubmit(handleRegister)}className="flex flex-col w-full h-full pb-6 text-center bg-white rounded-3xl">
+              <form onSubmit={handleSubmit(handleRegister)} className="flex flex-col w-full h-full pb-6 text-center bg-white rounded-3xl">
                 <h3 className="mb-3 text-4xl font-extrabold text-dark-grey-900">Sign Up</h3>
                 <p className="mb-4 text-grey-700">Create your account</p>
               <label htmlFor="name" className="mb-2 text-sm text-start text-slate-900">Name*</label>
